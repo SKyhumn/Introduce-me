@@ -45,3 +45,34 @@ portfolioBtn.addEventListener("click",function(){
 contactBtn.addEventListener("click",function(){
     contactSection.scrollIntoView({behavior:"smooth"});
 })
+
+document.forms[0].addEventListener("submit", function(event){
+    event.preventDefault();
+
+    const nm=document.forms[0].name;
+    const em=document.forms[0].email;
+    const msg=document.forms[0].msg;
+
+    if(nm.value.trim()==''){
+        alert('이름을 입력해 주세요.');
+        contactSection.scrollIntoView({behavior:"smooth"});
+    }
+
+    if(em.value.trim()==''){
+        alert('이메일을 입력해 주세요.');
+        contactSection.scrollIntoView({behavior:"smooth"});
+    }
+    else if(em.value.indexOf("@")==-1){
+        alert('이메일은 @를 포함해서 입력해 주세요.');
+        contactSection.scrollIntoView({behavior:"smooth"});
+    }
+
+    if(msg.value.trim().length<5){
+        alert('메세지는 최소 5자 입력해 주세요.');
+        contactSection.scrollIntoView({behavior:"smooth"});
+    }
+    
+    if(nm.value.trim()!==''&&em.value.indexOf("@")!==-1&&msg.value.trim().length>=5){
+        this.submit();
+    }
+})
